@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudar Aparência das Divs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+        .box1 {
+            background-color: lightcoral;
+        }
+        .box2 {
+            background-color: lightgreen;
+        }
+        .box3 {
+            background-color: lightyellow;
+        }
+        .newClass1 {
+            background-color: blue;
+        }
+        .newClass2 {
+            background-color: green;
+        }
+        .newClass3 {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trocar Aparência das Divs</h1>
+    <div class="container">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+    </div>
+    <button onclick="mudarAparencia()">Trocar Aparência</button>
+
+    <script>
+        function mudarAparencia() {
+            const box1 = document.querySelector('.box1');
+            const box2 = document.querySelector('.box2');
+            const box3 = document.querySelector('.box3');
+
+           
+            box1.classList.add('newClass1');
+
+           
+            box2.classList.remove('box2');
+            box2.classList.add('newClass2');
+
+         
+            box3.classList.toggle('newClass3');
+        }
+    </script>
+</body>
+</html>

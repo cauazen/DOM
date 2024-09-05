@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    <input type="text" id="novaTarefa" placeholder="Nova tarefa...">
+    <button onclick="adicionarTarefa()">Adicionar</button>
+    <ul id="listaTarefas"></ul>
+
+    <script>
+        
+        window.onload = function() {
+            const tarefasSalvas = JSON.parse(localStorage.getItem('tarefas')) || [];
+            tarefasSalvas.forEach(tarefa => criarTarefa(tarefa.texto, tarefa.completa));
+        };
+
+        
+        function criarTarefa(texto, completa = false) {
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            span.textContent = texto;
+            if (completa) span.classList.add('completed');
+
+            const botaoConcluir = document.createElement('button');
+            botaoConcluir.textContent = 'Concluir';
+            botaoConcluir.onclick = function() {
+                span.classList.toggle('completed');
+                salvarTarefas();
+            };
+
+            const botaoExcluir = document.createElement('button');
+            botaoExcluir.textContent = 'Excluir';
+            botaoExcluir.onclick = function() {
+                li.remove();
+                salvarTarefas();
+            };
+
+            li.appendChild(span);
+            li.appendChild(botaoConcluir);
+            li.appendChild(botaoExcluir);
+            document.getElementById('listaTarefas').appendChild(li);
+        }
+
+      
+        function adicionarTarefa() {
+            const input = document.getElementById('novaTarefa');
+            const texto = input.value.trim();
+            if (texto !== "") {
+                criarTarefa(texto);
+                salvarTarefas();
+                input.value = "";
+            }
+        }
+
+  
+        function salvarTarefas() {
+            const tarefas = [];
+            document.querySelectorAll('#listaTarefas li').forEach(li => {
+                tarefas.push({
+                    texto: li.querySelector('span').textContent,
+                    completa: li.querySelector('span').classList.contains('completed')
+                });
+            });
+            localStorage.setItem('tarefas', JSON.stringify(tarefas));
+        }
+    </script>
+</body>
+</html>

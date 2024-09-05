@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+        .galeria {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .galeria img {
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .galeria img:hover {
+            transform: scale(1.1);
+        }
+        #imagemDestacada {
+            margin-top: 20px;
+            max-width: 80%;
+            height: auto;
+            border: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galeria de Imagens</h1>
+    <div class="galeria">
+        <img src="download (1).jpg" alt="Imagem 1" data-full="download (1).jpg">
+        <img src="download (2).jpg" alt="Imagem 2" data-full="download (2).jpg">
+        <img src="download(3).jpg" alt="Imagem 3" data-full="download(3).jpg">
+        <img src="download(4).jpg" alt="Imagem 4" data-full="download(4).jpg">
+    </div>
+    <img id="imagemDestacada" src="download (1).jpg" alt="Imagem Destacada">
+
+    <script>
+        
+        const miniaturas = document.querySelectorAll('.galeria img');
+        const imagemDestacada = document.getElementById('imagemDestacada');
+
+        miniaturas.forEach(img => {
+            img.addEventListener('click', () => {
+           
+                imagemDestacada.src = img.dataset.full;
+                imagemDestacada.alt = img.alt;
+            });
+        });
+    </script>
+</body>
+</html>

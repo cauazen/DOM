@@ -1,0 +1,50 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interação com Eventos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        input[type="text"] {
+            padding: 12px;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interação com Eventos</h1>
+    <input type="text" id="inputText" placeholder="Digite algo...">
+    <button onclick="exibirMensagem()">Enviar</button>
+    <p id="mensagem"></p>
+
+    <script>
+        function exibirMensagem() {
+            
+            var textoDigitado = document.getElementById('inputText').value;
+            
+            
+            var mensagem = document.getElementById('mensagem');
+
+           
+            if (textoDigitado.trim() === "") {
+                mensagem.textContent = "Por favor, digite algo!";
+            } else {
+                mensagem.textContent = "Você digitou: " + textoDigitado;
+            }
+        }
+    </script>
+</body>
+</html>
